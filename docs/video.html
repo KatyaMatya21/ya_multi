@@ -7,6 +7,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Умный дом | Видеонаблюдение</title>
   <link rel="stylesheet" href="css/style.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    .video {
+      width: 300px;
+      height: 200px;
+    }
+  </style>
 </head>
 
 <body>
@@ -47,6 +54,11 @@
 
     <h2 class="page-content__title">Видеонаблюдение</h2>
 
+    <video id="video-1" class="video" controls muted autoplay></video>
+    <video id="video-2" class="video" controls muted autoplay></video>
+    <br>
+    <video id="video-3" class="video" controls muted autoplay></video>
+    <video id="video-4" class="video" controls muted autoplay></video>
 
   </main>
 
@@ -75,6 +87,44 @@
     </div>
   </footer>
 
+
+  <script>
+    function initVideo(video, url) {
+      if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          video.play();
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = 'https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8';
+        video.addEventListener('loadedmetadata', function () {
+          video.play();
+        });
+      }
+    }
+  
+    initVideo(
+      document.getElementById('video-1'),
+      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fsosed%2Fmaster.m3u8'
+    );
+  
+    initVideo(
+      document.getElementById('video-2'),
+      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fcat%2Fmaster.m3u8'
+    );
+  
+    initVideo(
+      document.getElementById('video-3'),
+      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fdog%2Fmaster.m3u8'
+    );
+  
+    initVideo(
+      document.getElementById('video-4'),
+      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fhall%2Fmaster.m3u8'
+    );
+  </script>
 
 </body>
 

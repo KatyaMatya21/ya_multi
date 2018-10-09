@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/eslint/bin/eslint.js source/js/module && node node_modules/stylelint/bin/stylelint.js 'source/less/block/*.less'"
+    "test": "node node_modules/eslint/bin/eslint.js source/js/module && node node_modules/stylelint/bin/stylelint.js 'source/less/block/*.less'",
+    "murphy": "murphy",
+    "http-server": "http-server -p 3102 --cors",
+    "start": "run-p http-server murphy"
   },
   "repository": {
     "type": "git",
@@ -31,5 +34,9 @@
     "stylelint-config-htmlacademy": "^0.1.1",
     "stylelint-order": "^0.8.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@videojs/murphy": "^0.1.1",
+    "http-server": "^0.11.1",
+    "npm-run-all": "^4.1.3"
+  }
 }
