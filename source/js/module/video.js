@@ -13,5 +13,10 @@ function show(event) {
 function hide(event) {
   var video = event.target.parentNode;
   video.classList.remove('video--show');
+  video.style = 'z-index: 666;';
+
+  setTimeout(function() {
+    video.style = '';
+  }, 500);
 }
 
