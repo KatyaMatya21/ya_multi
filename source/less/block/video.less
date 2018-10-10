@@ -25,7 +25,7 @@
       height: 100%;
     }
 
-    .video__close {
+    .video__controls {
       display: block;
     }
   }
@@ -43,13 +43,51 @@
   }
 }
 
-.video__close {
+.video__controls {
+  .font-size(5);
+  .line-height(7);
+
+  display: none;
+
   position: absolute;
   top: 0;
   right: 0;
 
-  display: none;
   padding: 10px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus-within {
+    opacity: 1;
+  }
+}
+
+.video__control {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #ffffff;
+}
+
+.video__input {
+  display: block;
+
+  max-width: 100px;
+}
+
+.video__close {
+  .font-size(5);
+  .line-height(7);
+
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
 
   color: #000000;
 

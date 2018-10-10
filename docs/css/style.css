@@ -1298,7 +1298,7 @@ input[type="radio"].visually-hidden {
 .video--show .video__player {
   height: 100%;
 }
-.video--show .video__close {
+.video--show .video__controls {
   display: block;
 }
 .video__player {
@@ -1313,12 +1313,42 @@ input[type="radio"].visually-hidden {
     max-height: 100%;
   }
 }
-.video__close {
+.video__controls {
+  font-size: 5px;
+  font-size: 0.4166666666666667rem;
+  line-height: 7px;
+  line-height: 0.5833333333333334rem;
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
-  display: none;
   padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+}
+.video__controls:hover {
+  opacity: 1;
+}
+.video__controls:focus-within {
+  opacity: 1;
+}
+.video__control {
+  display: block;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+.video__input {
+  display: block;
+  max-width: 100px;
+}
+.video__close {
+  font-size: 5px;
+  font-size: 0.4166666666666667rem;
+  line-height: 7px;
+  line-height: 0.5833333333333334rem;
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
   color: #000000;
   background-color: yellow;
   border: none;

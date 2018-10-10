@@ -11,7 +11,7 @@ function show(event) {
 }
 
 function hide(event) {
-  var video = event.target.parentNode;
+  var video = event.target.parentNode.parentNode;
   video.classList.remove('video--show');
   video.style = 'z-index: 666;';
 
