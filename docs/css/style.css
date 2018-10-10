@@ -629,6 +629,8 @@ input[type="radio"].visually-hidden {
 .grid-video__cell {
   grid-column: span 1;
   grid-row: span 1;
+  width: auto;
+  height: auto;
 }
 @media (min-width: 768px) {
   .grid-video__cell {
