@@ -1182,6 +1182,7 @@ input[type="radio"].visually-hidden {
   background-color: #858585;
 }
 .grid-video__list {
+  position: relative;
   margin: 0;
   padding: 0;
   padding-top: 30px;
@@ -1198,6 +1199,9 @@ input[type="radio"].visually-hidden {
     align-content: stretch;
   }
 }
+.grid-video__cell {
+  max-height: 300px;
+}
 @media (min-width: 768px) {
   .grid-video__cell {
     display: -webkit-box;
@@ -1207,37 +1211,88 @@ input[type="radio"].visually-hidden {
     max-width: 50%;
   }
 }
+.grid-video__cell:nth-child(1) .video {
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+}
+@media (min-width: 768px) {
+  .grid-video__cell:nth-child(1) .video {
+    -webkit-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+  }
+}
+.grid-video__cell:nth-child(2) .video {
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+}
+@media (min-width: 768px) {
+  .grid-video__cell:nth-child(2) .video {
+    -webkit-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+  }
+}
+.grid-video__cell:nth-child(3) .video {
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+}
+@media (min-width: 768px) {
+  .grid-video__cell:nth-child(3) .video {
+    -webkit-transform-origin: bottom left;
+    -ms-transform-origin: bottom left;
+    transform-origin: bottom left;
+  }
+}
+.grid-video__cell:nth-child(4) .video {
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+}
+@media (min-width: 768px) {
+  .grid-video__cell:nth-child(4) .video {
+    -webkit-transform-origin: bottom right;
+    -ms-transform-origin: bottom right;
+    transform-origin: bottom right;
+  }
+}
 .video {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
 }
 .video--show {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 666;
-  width: auto;
-  height: 100vh;
-  pointer-events: auto;
-  -webkit-animation: showVideo 0.5s forwards;
-  animation: showVideo 0.5s forwards;
-  -webkit-transition: top 0.5s;
-  -o-transition: top 0.5s;
-  transition: top 0.5s;
+  -webkit-transform: scale(2);
+  -ms-transform: scale(2);
+  transform: scale(2);
+  z-index: 10;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
 }
 .video--show .video__player {
-  width: 100vw;
-  height: auto;
+  height: 100%;
 }
 .video--show .video__close {
   display: block;
 }
-.video--hide .video__player {
+.video__player {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 .video__close {
   position: absolute;
@@ -1248,73 +1303,4 @@ input[type="radio"].visually-hidden {
   color: #000000;
   background-color: yellow;
   border: none;
-}
-.video__inner {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: #000000;
-}
-@-webkit-keyframes showVideo {
-  0% {
-    width: 50%;
-    height: 50%;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  100% {
-    width: 100vw;
-    height: 100vh;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-@keyframes showVideo {
-  0% {
-    width: 50%;
-    height: 50%;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  100% {
-    width: 100vw;
-    height: 100vh;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-@-webkit-keyframes hideVideo {
-  0% {
-    width: 100vw;
-    height: 100vh;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  100% {
-    width: auto;
-    height: auto;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-@keyframes hideVideo {
-  0% {
-    width: 100vw;
-    height: 100vh;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  100% {
-    width: auto;
-    height: auto;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
 }

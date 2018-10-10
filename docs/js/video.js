@@ -15,16 +15,14 @@ for (var i = 0; i < videoList.length; i++) {
 }
 
 function show(event) {
-  var video = event.target.parentNode.parentNode;
+  var video = event.target.parentNode;
   video.classList.add('video--show');
-  video.classList.remove('video--hide');
-  event.target.currentTime = 0;
   video.querySelector('.video__close').addEventListener('click', hide);
 }
 
 function hide(event) {
-  var video = event.target.parentNode.parentNode;
+  var video = event.target.parentNode;
   video.classList.remove('video--show');
-  video.classList.add('video--hide');
 }
+
 
