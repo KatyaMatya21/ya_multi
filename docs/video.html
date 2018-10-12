@@ -49,8 +49,8 @@
     <div class="grid-video">
       <ul class="grid-video__list">
         <li class="grid-video__cell">
-          <div class="video">
-            <video class="video__player" id="video-1" controls muted autoplay></video>
+          <div class="video" data-source="http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fsosed%2Fmaster.m3u8">
+            <canvas class="video__player"></canvas>
             <div class="video__controls">
               <label class="video__control video__control--brightness">
                 Яркость
@@ -66,8 +66,8 @@
         </li>
 
         <li class="grid-video__cell">
-          <div class="video">
-            <video class="video__player" id="video-2" controls muted autoplay></video>
+          <div class="video" data-source="http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fcat%2Fmaster.m3u8">
+            <canvas class="video__player"></canvas>
             <div class="video__controls">
               <label class="video__control video__control--brightness">
                 Яркость
@@ -83,8 +83,8 @@
         </li>
 
         <li class="grid-video__cell">
-          <div class="video">
-            <video class="video__player" id="video-3" controls muted autoplay></video>
+          <div class="video" data-source="http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fdog%2Fmaster.m3u8">
+            <canvas class="video__player"></canvas>
             <div class="video__controls">
               <label class="video__control video__control--brightness">
                 Яркость
@@ -100,8 +100,8 @@
         </li>
 
         <li class="grid-video__cell">
-          <div class="video">
-            <video id="video-4" class="video__player" controls muted autoplay></video>
+          <div class="video" data-source="http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fhall%2Fmaster.m3u8">
+            <canvas class="video__player"></canvas>
             <div class="video__controls">
               <label class="video__control video__control--brightness">
                 Яркость
@@ -145,45 +145,6 @@
       <p class="page-footer__copyright">© 2001–2018 ООО «Яндекс»</p>
     </div>
   </footer>
-
-
-  <script>
-    function initVideo(video, url) {
-      if (Hls.isSupported()) {
-        var hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          video.play();
-        });
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = 'https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8';
-        video.addEventListener('loadedmetadata', function () {
-          video.play();
-        });
-      }
-    }
-  
-    initVideo(
-      document.getElementById('video-1'),
-      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fsosed%2Fmaster.m3u8'
-    );
-  
-    initVideo(
-      document.getElementById('video-2'),
-      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fcat%2Fmaster.m3u8'
-    );
-  
-    initVideo(
-      document.getElementById('video-3'),
-      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fdog%2Fmaster.m3u8'
-    );
-  
-    initVideo(
-      document.getElementById('video-4'),
-      'http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fhall%2Fmaster.m3u8'
-    );
-  </script>
 
 
   <script src="js/video.min.js" type="text/javascript"></script>
