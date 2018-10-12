@@ -10,6 +10,10 @@
     this.canvas = null;
     this.context = null;
 
+    this.canvasAudio = null;
+    this.contextAudio = null;
+    this.analyser = null;
+
     this.brightness = 0;
     this.contrast = 0;
 
@@ -34,6 +38,8 @@
     this.item.querySelector('.video__control--contrast input').addEventListener('change', this.changeContrast.bind(this));
 
     this.video.addEventListener('play', this.onPlay.bind(this));
+
+    this.audioAnalyser();
   };
 
   /**
@@ -67,6 +73,7 @@
     video.autoPlay = true;
     video.loop = true;
     video.muted = true;
+    video.preload = 'auto';
 
     return video;
   };
@@ -168,11 +175,65 @@
   };
 
   /**
+   * Audio analyzer
+   */
+  Video.prototype.audioAnalyser = function () {
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    this.analyser = audioCtx.createAnalyser();
+
+    var source = audioCtx.createMediaElementSource(this.video);
+    source.connect(this.analyser);
+
+    this.analyser.fftSize = 256;
+    this.bufferLength = this.analyser.frequencyBinCount;
+    this.dataArray = new Uint8Array(this.bufferLength);
+
+    this.canvasAudio = this.item.querySelector('.video__audio');
+
+    this.canvasAudio.width = this.canvasAudio.clientWidth;
+    this.canvasAudio.height = this.canvasAudio.clientHeight;
+
+    this.contextAudio = this.canvasAudio.getContext('2d');
+    this.contextAudio.clearRect(0, 0, this.canvasAudio.clientWidth, this.canvasAudio.clientHeight);
+
+    this.analyser.connect(audioCtx.destination);
+
+    this.drawSound();
+  };
+
+  /**
+   * Draw histogram
+   */
+  Video.prototype.drawSound = function () {
+    drawVisual = requestAnimationFrame(this.drawSound.bind(this));
+
+    this.analyser.getByteFrequencyData(this.dataArray);
+
+    this.contextAudio.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    this.contextAudio.fillRect(0, 0, this.canvasAudio.clientWidth, this.canvasAudio.clientHeight);
+    var barWidth = (this.canvasAudio.clientWidth / this.bufferLength) * 2.5;
+    var barHeight;
+    var x = 0;
+
+    for (var i = 0; i < this.bufferLength; i++) {
+      barHeight = this.dataArray[i] / 2;
+
+      this.contextAudio.fillStyle = 'rgb(' + '50, 50, ' + (barHeight + 100) + ')';
+      this.contextAudio.fillRect(x, this.canvasAudio.clientHeight - barHeight / 2, barWidth, barHeight);
+
+      x += barWidth + 1;
+    }
+  };
+
+  /**
    * Open full video
    * @param event
    */
   Video.prototype.show = function (event) {
     var video = event.target.parentNode;
+    if (video.classList.contains('video--show')) {
+      return false;
+    }
     video.classList.add('video--show');
 
     this.video.muted = false;

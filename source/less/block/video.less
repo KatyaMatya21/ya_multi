@@ -26,7 +26,8 @@
     }
 
     .video__controls {
-      display: block;
+      visibility: visible;
+      pointer-events: auto;
     }
   }
 }
@@ -51,10 +52,11 @@
 }
 
 .video__controls {
-  .font-size(5);
-  .line-height(7);
+  .font-size(10);
+  .line-height(14);
 
-  display: none;
+  visibility: hidden;
+  pointer-events: none;
 
   position: absolute;
   top: 0;
@@ -65,6 +67,11 @@
   background-color: rgba(0, 0, 0, 0.5);
 
   opacity: 0.5;
+
+  @media (min-width: @tablet) {
+    .font-size(5);
+    .line-height(7);
+  }
 
   &:hover {
     opacity: 1;
@@ -77,6 +84,7 @@
 
 .video__control {
   display: block;
+
   margin-bottom: 5px;
 
   color: #ffffff;
@@ -89,8 +97,8 @@
 }
 
 .video__close {
-  .font-size(5);
-  .line-height(7);
+  .font-size(10);
+  .line-height(14);
 
   display: block;
   margin: 0 auto;
@@ -100,4 +108,19 @@
 
   background-color: yellow;
   border: none;
+
+  @media (min-width: @tablet) {
+    .font-size(5);
+    .line-height(7);
+  }
+}
+
+.video__audio {
+  max-width: 100px;
+  max-height: 70px;
+
+  @media (min-width: @tablet) {
+    max-width: 100px;
+    max-height: 70px;
+  }
 }
