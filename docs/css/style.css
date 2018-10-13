@@ -1322,8 +1322,8 @@ input[type="radio"].visually-hidden {
   }
 }
 .video__controls {
-  font-size: 10px;
-  font-size: 0.8333333333333334rem;
+  font-size: 12px;
+  font-size: 1rem;
   line-height: 14px;
   line-height: 1.1666666666666667rem;
   visibility: hidden;
@@ -1337,10 +1337,18 @@ input[type="radio"].visually-hidden {
 }
 @media (min-width: 768px) {
   .video__controls {
-    font-size: 5px;
-    font-size: 0.4166666666666667rem;
-    line-height: 7px;
-    line-height: 0.5833333333333334rem;
+    font-size: 8px;
+    font-size: 0.6666666666666666rem;
+    line-height: 10px;
+    line-height: 0.8333333333333334rem;
+  }
+}
+@media (min-width: 1441px) {
+  .video__controls {
+    font-size: 12px;
+    font-size: 1rem;
+    line-height: 14px;
+    line-height: 1.1666666666666667rem;
   }
 }
 .video__controls:hover {
@@ -1372,10 +1380,18 @@ input[type="radio"].visually-hidden {
 }
 @media (min-width: 768px) {
   .video__close {
-    font-size: 5px;
-    font-size: 0.4166666666666667rem;
-    line-height: 7px;
-    line-height: 0.5833333333333334rem;
+    font-size: 8px;
+    font-size: 0.6666666666666666rem;
+    line-height: 10px;
+    line-height: 0.8333333333333334rem;
+  }
+}
+@media (min-width: 1441px) {
+  .video__close {
+    font-size: 12px;
+    font-size: 1rem;
+    line-height: 14px;
+    line-height: 1.1666666666666667rem;
   }
 }
 .video__audio {

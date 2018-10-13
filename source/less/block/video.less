@@ -52,7 +52,7 @@
 }
 
 .video__controls {
-  .font-size(10);
+  .font-size(12);
   .line-height(14);
 
   visibility: hidden;
@@ -69,8 +69,13 @@
   opacity: 0.5;
 
   @media (min-width: @tablet) {
-    .font-size(5);
-    .line-height(7);
+    .font-size(8);
+    .line-height(10);
+  }
+
+  @media (min-width: @desktop) {
+    .font-size(12);
+    .line-height(14);
   }
 
   &:hover {
@@ -110,8 +115,13 @@
   border: none;
 
   @media (min-width: @tablet) {
-    .font-size(5);
-    .line-height(7);
+    .font-size(8);
+    .line-height(10);
+  }
+
+  @media (min-width: @desktop) {
+    .font-size(12);
+    .line-height(14);
   }
 }
 

@@ -79,40 +79,52 @@
   };
 
   /**
-   * Draw frame
+   * On play
    */
   Video.prototype.onPlay = function () {
+    this.then = Date.now();
+    requestAnimationFrame(this.drawVideo.bind(this), this.canvas);
+  };
 
+  /**
+   * Draw video
+   */
+  Video.prototype.drawVideo = function () {
     var self = this;
 
-    (function loop() {
-      if (!self.video.paused && !self.video.ended) {
+    var fps = 24;
+    var interval = 1000 / fps;
+    var now = Date.now();
+    var delta = now - this.then;
 
-        self.canvas.width = self.canvas.clientWidth;
-        self.canvas.height = self.canvas.clientHeight;
+    requestAnimationFrame(self.drawVideo.bind(self), self.canvas);
 
-        var scale = Math.min(
-          self.canvas.width / self.video.videoWidth,
-          self.canvas.height / self.video.videoHeight) * 1.2;
+    if (!self.video.paused && !self.video.ended && delta > interval) {
 
-        var vidH = self.video.videoHeight;
-        var vidW = self.video.videoWidth;
-        var top = self.canvas.height / 2 - (vidH / 2) * scale;
-        var left = self.canvas.width / 2 - (vidW / 2) * scale;
+      this.then = now - (delta % interval);
 
-        self.context.drawImage(self.video, left, top, vidW * scale, vidH * scale);
+      self.canvas.width = self.canvas.clientWidth;
+      self.canvas.height = self.canvas.clientHeight;
 
-        var imageData = self.context.getImageData(0, 0, self.canvas.width, self.canvas.height);
-        var data = imageData.data;
+      var scale = Math.min(
+        self.canvas.width / self.video.videoWidth,
+        self.canvas.height / self.video.videoHeight) * 1.2;
 
-        self.applyBrightness(data, self.brightness);
-        self.applyContrast(data, parseInt(self.contrast, 10));
+      var vidH = self.video.videoHeight;
+      var vidW = self.video.videoWidth;
+      var top = self.canvas.height / 2 - (vidH / 2) * scale;
+      var left = self.canvas.width / 2 - (vidW / 2) * scale;
 
-        self.context.putImageData(imageData, 0, 0);
+      self.context.drawImage(self.video, left, top, vidW * scale, vidH * scale);
 
-        setTimeout(loop, 1000 / 60);
-      }
-    })();
+      var imageData = self.context.getImageData(0, 0, self.canvas.width, self.canvas.height);
+      var data = imageData.data;
+
+      self.applyBrightness(data, self.brightness);
+      self.applyContrast(data, parseInt(self.contrast, 10));
+
+      self.context.putImageData(imageData, 0, 0);
+    }
   };
 
   /**
@@ -237,6 +249,7 @@
     video.classList.add('video--show');
 
     this.video.muted = false;
+    this.video.play();
 
     video.querySelector('.video__close').addEventListener('click', this.hide.bind(this));
   };
